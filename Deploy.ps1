@@ -32,7 +32,7 @@ Param (
     
     [Parameter(Position=1)]
     [string]
-    $hostAddress = "172.16.100.221",
+    $hostAddress = "188.10.15.200",
     
     [Alias("u")] 
     [string]
@@ -109,7 +109,7 @@ Function PrintErrorMessageForParameter($paramValue) {
 
 Function PrintUsage() {
     Process {
-        Write-Host "Example usage should be : .\Deploy.ps1 172.16.100.221 -u cassandra -p cassandra -d E:\Dev\DealAnalysis\dealanalysis.workflow\Schema\Tables\DeploymentScript.txt" ([Environment]::NewLine)
+        Write-Host "Example usage should be : .\Deploy.ps1 188.10.15.200 -u sacha -p admin -d c:\ExampleDeploymentScript.txt" ([Environment]::NewLine)
     }
 }
 
@@ -117,7 +117,7 @@ Function PrintUsage() {
 Try {
     CheckParams
     if ($global:paramsAllValid) {
-        Write-Host "Parameters all suppied ok, proceeding to check input file and run CQL files"
+        Write-Host "Parameters all supplied ok, proceeding to check input file and run CQL files"
         Get-ChildItem (FetchCqlFileNamesFromInputFile) | RunCql
 
     }
@@ -128,7 +128,7 @@ Try {
 Catch {
     $ErrorMessage = $_.Exception.Message
     $FailedItem = $_.Exception.ItemName
-    Write-Host "Execption : The error message was $ErrorMessage"
+    Write-Host "Exception : The error message was $ErrorMessage"
     Break
 }
 
